@@ -16,20 +16,33 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class UserList extends StatelessWidget {
+class UserList extends StatefulWidget {
   const UserList({Key key}) : super(key: key);
+
+  @override
+  _UserListState createState() => _UserListState();
+}
+
+class _UserListState extends State<UserList> {
+  List users;
+
+  @override
+  void initState() {
+    users = ['primer user', 'segundo user', 'tercer user'];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
         return ListTile(
-          title: Text('Item $index'),
+          title: Text(users[index]),
           subtitle: Text('subtitulo'),
           leading: Icon(Icons.supervised_user_circle),
         );
       },
-      itemCount: 100,
+      itemCount: users.length,
     );
   }
 }
